@@ -71,4 +71,7 @@ dependencies {
     implementation(libs.dagger)
     kapt(libs.dagger.compiler)
 
+    //coil compose
+    implementation(libs.coil.compose)
+
 }

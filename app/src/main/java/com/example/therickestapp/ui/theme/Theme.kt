@@ -1,6 +1,5 @@
 package com.example.therickestapp.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
@@ -9,6 +8,8 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
 private val DarkColorScheme = darkColorScheme(
@@ -54,5 +55,35 @@ fun TheRickestAppTheme(
         colorScheme = colorScheme,
         typography = Typography,
         content = content
+    )
+}
+
+data class Pallet(
+    val primaryTextColor: Color,
+    val secondaryTextColor: Color,
+    val backgroundColor: Color,
+    val buttonBackgroundColor: Color,
+    val characterItemBackgroundColor: Color
+)
+
+val LocalPallet = staticCompositionLocalOf {
+    getPalletColor()
+}
+
+fun getPalletColor(
+    isDarkTheme: Boolean = false
+): Pallet {
+    return if(isDarkTheme) Pallet(
+        primaryTextColor =  darkPallet.primaryTextColor,
+        secondaryTextColor = darkPallet.secondaryTextColor,
+        backgroundColor = darkPallet.backgroundColor,
+        buttonBackgroundColor = darkPallet.buttonBackgroundColor,
+        characterItemBackgroundColor = darkPallet.characterItemBackgroundColor
+    ) else Pallet(
+        primaryTextColor =  lightPallet.primaryTextColor,
+        secondaryTextColor = lightPallet.secondaryTextColor,
+        backgroundColor = lightPallet.backgroundColor,
+        buttonBackgroundColor = lightPallet.buttonBackgroundColor,
+        characterItemBackgroundColor = lightPallet.characterItemBackgroundColor
     )
 }
