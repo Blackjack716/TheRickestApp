@@ -1,4 +1,4 @@
-package com.example.therickestapp
+package com.example.therickestapp.ui.activity
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
