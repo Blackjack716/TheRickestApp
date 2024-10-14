@@ -12,10 +12,8 @@ import com.example.therickestapp.ui.compose.ListType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -27,10 +25,8 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _characterList = MutableStateFlow<List<CharacterItem>>(emptyList())
-    //val characterList = _characterList.asStateFlow()
 
     private val _favouriteList = MutableStateFlow<List<CharacterItem>>(emptyList())
-    //val favouriteList = _favouriteList.asStateFlow()
 
     private val listType = MutableStateFlow(ListType.AllCharacterList)
 
@@ -54,7 +50,6 @@ class MainViewModel @Inject constructor(
     private fun observeFavouriteList() {
         viewModelScope.launch {
             getFavouriteCharactersUseCase.execute().collectLatest {
-                println("emit")
                 _favouriteList.emit(it)
             }
         }

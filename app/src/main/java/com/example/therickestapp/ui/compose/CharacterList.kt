@@ -130,7 +130,6 @@ private fun CharacterDisplayableItem(
                     isLoading = false
                 },
                 onError = {
-                    println(it)
                     isLoading = false
                 },
                 contentScale = ContentScale.FillWidth,

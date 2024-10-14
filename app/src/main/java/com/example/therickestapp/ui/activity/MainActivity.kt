@@ -12,12 +12,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import com.example.therickestapp.ui.compose.CharacterListState
 import com.example.therickestapp.ui.compose.MainView
 import com.example.therickestapp.ui.theme.TheRickestAppTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
-import com.example.therickestapp.ui.compose.ListType
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

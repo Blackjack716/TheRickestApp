@@ -1,6 +1,6 @@
 package com.example.data.remote
 
-import com.example.data.local.model.CharacterDao
+import com.example.data.local.dao.CharacterDao
 import com.example.data.local.model.toDomain
 import com.example.data.local.model.toEntity
 import com.example.data.remote.api.RickAndMortyApi
@@ -34,7 +34,6 @@ class CharacterListRepositoryImpl @Inject constructor(
                 is NetworkResponse.Success -> {
                     _characters.emit(response.body.results)
                 }
-
                 else -> {}
             }
         }

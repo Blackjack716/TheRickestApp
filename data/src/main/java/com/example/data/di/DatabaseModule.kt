@@ -3,7 +3,7 @@ package com.example.data.di
 import android.content.Context
 import androidx.room.Room
 import com.example.data.local.AppDatabase
-import com.example.data.local.model.CharacterDao
+import com.example.data.local.dao.CharacterDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +23,7 @@ object DatabaseModule {
         return Room.databaseBuilder(
             context,
             AppDatabase::class.java,
-            AppDatabase.databaseName
+            AppDatabase.DATABASE_NAME
         )
             .build()
     }
