@@ -5,5 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface CharacterListRepository {
     suspend fun getAllCharacters(): Flow<List<CharacterItem>>
-    suspend fun serCharacterAsFavourite(isFav: Boolean)
+    suspend fun setCharacterAsFavourite(characterItem: CharacterItem, isFav: Boolean)
+    suspend fun getFavouriteCharacters(): Flow<List<CharacterItem>>
 }
