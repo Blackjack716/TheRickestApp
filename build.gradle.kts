@@ -6,4 +6,6 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.jvm) apply false
     alias(libs.plugins.kotlin.kapt) apply false
     alias(libs.plugins.dagger.gradle) apply false
+    alias(libs.plugins.kotlinx.serialization) apply false
+    alias(libs.plugins.compose.compiler) apply false
 }

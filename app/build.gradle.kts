@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
     alias(libs.plugins.dagger.gradle)
+    alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -49,7 +51,8 @@ android {
 }
 
 dependencies {
-    project(path = ":domain")
+    implementation(project(":domain"))
+    implementation(project(":data"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -73,5 +76,15 @@ dependencies {
 
     //coil compose
     implementation(libs.coil.compose)
+
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.serialization)
+    implementation(libs.coroutines.core)
+    implementation(libs.coroutines.android)
+    implementation(libs.okhttp3)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.compose.lifecycle)
+    implementation(libs.lifecycle.viewmodel.compose)
 
 }

@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.kotlinx.serialization)
 }
 
 android {
@@ -30,7 +32,7 @@ android {
 }
 
 dependencies {
-    project(path = ":domain")
+    implementation(project(":domain"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -38,4 +40,17 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    //dagger
+    implementation(libs.dagger)
+    kapt(libs.dagger.compiler)
+
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.serialization)
+    implementation(libs.coroutines.core)
+    implementation(libs.coroutines.android)
+    implementation(libs.okhttp3)
+    implementation(libs.converter.gson)
+    implementation(libs.networkresponseadapter)
 }
