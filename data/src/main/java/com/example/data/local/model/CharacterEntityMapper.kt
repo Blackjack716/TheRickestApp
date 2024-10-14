@@ -18,6 +18,6 @@ fun CharacterEntity.toDomain(): CharacterItem {
         name = this.name ?: "",
         image = this.photoUrl ?: "",
         status = this.status ?: "",
-        isFavourite = false
+        isFavourite = this.isFavourite ?: false
     )
 }

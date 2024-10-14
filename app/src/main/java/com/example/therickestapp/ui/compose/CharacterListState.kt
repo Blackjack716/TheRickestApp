@@ -4,9 +4,9 @@ import com.example.domain.model.CharacterItem
 
 data class CharacterListState(
     val characters: List<CharacterItem> = emptyList(),
-    val listId: ListType = ListType.AllcharacterList,
+    val listId: ListType = ListType.AllCharacterList,
 )
 
 enum class ListType {
-    AllcharacterList, FavouriteList
+    AllCharacterList, FavouriteList
 }

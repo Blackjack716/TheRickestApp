@@ -23,16 +23,7 @@ fun MainView(
                 .padding(4.dp)
         )
     ) {
-        CategoryBar()
-        CharacterList(state.characters) {
-            when (it) {
-                is CharacterEvent.OnFavCharacter -> {
-
-                }
-
-                CharacterEvent.OnAllListClicked -> TODO()
-                CharacterEvent.OnFavListClicked -> TODO()
-            }
-        }
+        CategoryBar(onEvent)
+        CharacterList(state.characters, onEvent)
     }
 }

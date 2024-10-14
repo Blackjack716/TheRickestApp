@@ -17,15 +17,13 @@ import com.example.therickestapp.ui.compose.MainView
 import com.example.therickestapp.ui.theme.TheRickestAppTheme
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import com.example.therickestapp.ui.compose.ListType
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.combine
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private val mainViewModel: MainViewModel by viewModels()
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,13 +32,14 @@ class MainActivity : ComponentActivity() {
             TheRickestAppTheme {
 
                 var state by remember {
-                    mutableStateOf(CharacterListState(mainViewModel.state.value.characters, mainViewModel.state.value.listId))
+                    mutableStateOf(mainViewModel.state.value)
                 }
 
-                LaunchedEffect(mainViewModel.characterList) {
-                    mainViewModel.characterList.collect {
-                        state = CharacterListState(it, mainViewModel.listType.value)
+                LaunchedEffect(mainViewModel.state) {
+                    mainViewModel.state.collect {
+                        state = it
                     }
+
                 }
 
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->

@@ -14,7 +14,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,26 +33,42 @@ class CharacterListRepositoryImpl @Inject constructor(
             when (val response = rickAndMortyApi.getAllCharacters()) {
                 is NetworkResponse.Success -> {
                     _characters.emit(response.body.results)
-                    println(response.body)
                 }
 
                 else -> {}
             }
         }
         CoroutineScope(Dispatchers.IO).launch {
-            characterDao.getFavouriteCharacters().collect { list ->
-                list.map { it.toDomain() }
+            characterDao.getFavouriteCharacters().distinctUntilChanged().collect { list ->
+                _favouriteCharacters.emit(
+                    list.map {
+                        it.toDomain()
+                    })
             }
         }
     }
 
     override suspend fun getAllCharacters(): Flow<List<CharacterItem>> {
-        return _characters.asStateFlow().mapNotNull { charactersList -> charactersList.map { it.toDomain() } }
+        return combine(
+            _characters,
+            _favouriteCharacters
+        ) { characterList, favouriteList ->
+            Pair(characterList, favouriteList)
+        }.map { (characterList, favouriteList) ->
+            characterList.map { character ->
+                if (favouriteList.map { it.id }.contains(character.id)) {
+                    character.toDomain().copy(isFavourite = true)
+                } else {
+                    character.toDomain()
+                }
+
+            }
+        }
     }
 
     override suspend fun setCharacterAsFavourite(characterItem: CharacterItem, isFav: Boolean) {
         if (isFav) {
-            characterDao.addFavouriteCharacter(characterItem.toEntity())
+            characterDao.addFavouriteCharacter(characterItem.toEntity().copy(isFavourite = true))
         } else {
             characterDao.delete(characterItem.toEntity())
         }

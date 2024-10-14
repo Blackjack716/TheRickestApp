@@ -184,7 +184,7 @@ private fun CharacterDisplayableItem(
                     .align(Alignment.End)
                     .size(26.dp)
                     .clickable {
-                        CharacterEvent.OnFavCharacter(character = characterItem, !isFavourite)
+                        onEvent(CharacterEvent.OnFavCharacterClicked(character = characterItem, !isFavourite))
                         isFavourite = !isFavourite
                     }
             ) {
