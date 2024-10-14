@@ -16,6 +16,7 @@ fun Characters.toEntity(): CharacterItem {
         id = this.id ?: 0,
         name = this.name ?: "",
         image = this.image ?: "",
-        status = this.status ?: ""
+        status = this.status ?: "",
+        isFavourite = false
     )
 }

@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -26,6 +26,7 @@ class CharacterListRepositoryImpl @Inject constructor(
             when (val response = rickAndMortyApi.getAllCharacters()) {
                 is NetworkResponse.Success -> {
                     _characters.emit(response.body.results)
+                    println(response.body)
                 }
 
                 else -> {}
@@ -34,6 +35,10 @@ class CharacterListRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getAllCharacters(): Flow<List<CharacterItem>> {
-        return _characters.asStateFlow().map { charactersList -> charactersList.map { it.toEntity() } }
+        return _characters.asStateFlow().mapNotNull { charactersList -> charactersList.map { it.toEntity() } }
+    }
+
+    override suspend fun serCharacterAsFavourite(isFav: Boolean) {
+        TODO("Not yet implemented")
     }
 }

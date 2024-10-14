@@ -1,6 +1,5 @@
 [versions]
 agp = "8.6.0"
-coilCompose = "3.0.0-rc01"
 converterGson = "2.9.0"
 javaxInject = "1"
 kotlin = "1.9.0"
@@ -17,7 +16,7 @@ dagger = "2.52"
 appcompat = "1.7.0"
 material = "1.12.0"
 jetbrainsKotlinJvm = "1.9.0"
-coil = "3.0.0-rc01"
+coil3 = "3.0.0-rc01"
 coroutines = "1.9.0"
 lifecycle= "2.8.4"
 kotlinxSerialization = "2.0.0"
@@ -29,7 +28,8 @@ okhttp3 = "4.12.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
-coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coilCompose" }
+coil3-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil3" }
+coil3-network = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil3" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "converterGson" }
 javax-inject = { module = "javax.inject:javax.inject", version.ref = "javaxInject" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -49,7 +49,6 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 dagger = { module = "com.google.dagger:hilt-android", version.ref = "dagger" }
 dagger-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "dagger" }
-coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson"}
 networkresponseadapter = { module = "com.github.haroldadmin:NetworkResponseAdapter", version.ref = "networkresponseadapter" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit"}

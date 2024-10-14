@@ -10,7 +10,7 @@ data class Characters(
     @Expose
     var id: Int? = null,
 
-    @SerializedName("info")
+    @SerializedName("name")
     @Expose
     val name: String? = null,
 

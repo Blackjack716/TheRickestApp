@@ -75,7 +75,8 @@ dependencies {
     kapt(libs.dagger.compiler)
 
     //coil compose
-    implementation(libs.coil.compose)
+    implementation(libs.coil3.compose)
+    implementation(libs.coil3.network)
 
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.retrofit)
