@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">The Rickest App</string>
+    <string name="main_list_category_name">All characters</string>
+    <string name="favourite_list_category_name">Favourite characters</string>
 </resources>
